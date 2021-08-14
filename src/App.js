@@ -16,6 +16,34 @@ class App extends React.Component{
     this.setState({genreSelected : newGenre});
   }
 
+  toggleLike = (id) => {
+
+    let index = this.state.movies.findIndex((el)=>{
+          return el._id == id;
+    })
+
+    let currMoviesArr = this.state.movies.map((el) => el)
+
+    if(currMoviesArr[index].liked)
+    {
+      currMoviesArr[index].liked = false;
+    }
+    else
+    {
+      currMoviesArr[index].liked = true;
+    }
+
+    this.setState({movies : currMoviesArr});
+  }
+
+  deleteMovie = (id) => {
+    let currMoviesArr = this.state.movies.filter((el) => {
+      return el._id !== id;
+    })
+
+    this.setState({movies:currMoviesArr})
+  }
+
   componentDidMount(){
     let f = async () =>{
       let moviesResponse = await fetch("/movies")
@@ -43,7 +71,7 @@ class App extends React.Component{
 
         <div className="col-9 mt-4">
           <Search genreSelected={this.state.genreSelected} moviesData={this.state.movies}/>
-          <Table moviesData={this.state.movies} genreSelected={this.state.genreSelected}/>
+          <Table moviesData={this.state.movies} genreSelected={this.state.genreSelected} toggleLike={this.toggleLike} deleteMovie={this.deleteMovie}/>
         </div>
         </div>
         
