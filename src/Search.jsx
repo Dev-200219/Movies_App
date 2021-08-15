@@ -1,12 +1,16 @@
 let Search = (props) => {
     let moviesCount = 0;
-
+    
     props.moviesData.map((ele) => {
-        if(props.genreSelected === "All Genre")
+        let search = props.searchValue.toLowerCase();
+        let movieName = ele.title.toLowerCase();
+       
+        if(props.genreSelected === "All Genre" && movieName.includes(search))
         moviesCount++;
-        else if(props.genreSelected === ele.genre.name)
+        else if(props.genreSelected === ele.genre.name && movieName.includes(search))
         moviesCount++;
     })
+    
     return(
         <> 
         <p>{`Showing ${moviesCount} movies from the database`}</p>
@@ -14,7 +18,10 @@ let Search = (props) => {
         <div class="row mt-4">
             <div class="col-5">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" />
+                    <input onChange={(e)=>{
+                        props.updateSearch(e.currentTarget.value);
+                    }}
+                     type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" value={props.searchValue} />
                 </div>
             </div>
         </div>

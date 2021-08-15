@@ -7,16 +7,31 @@ class Table extends React.Component{
     state={
         currPage : 1
     }
+
+    changePage=(newPage)=>{
+        this.setState({currPage:newPage})
+    }
     
     render(){
         let filteredMoviesArr = this.props.moviesData.filter((ele) => {
             if (this.props.genreSelected === "All Genre")
-                return ele;
+                return true;
             else if (ele.genre.name === this.props.genreSelected)
-                return ele;
+                return true;
         })
+
+        filteredMoviesArr = filteredMoviesArr.filter((ele) => {
+            let search = this.props.searchValue.toLowerCase();
+            let movieName = ele.title.toLowerCase();
+
+            return movieName.includes(search);
+        })
+
+        let numberOfPages = Math.ceil(filteredMoviesArr.length/4);
+        let startIndex = (this.state.currPage - 1) * 4;
+        let endIndex = Math.min(filteredMoviesArr.length, this.state.currPage * 4);
     
-        let arrToBeUsedInTable = filteredMoviesArr.slice(0, 4);
+        let arrToBeUsedInTable = filteredMoviesArr.slice(startIndex, endIndex);
         
         return (
             <>
@@ -68,7 +83,11 @@ class Table extends React.Component{
                     </div>
                 </div>
     
-                <Pagination />
+                <Pagination 
+                currPage={this.state.currPage}
+                numberOfPages={numberOfPages}
+                changePage={this.changePage}
+                />
             </>
         )
     }

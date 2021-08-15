@@ -1,9 +1,21 @@
-let Pagination = () => {
+let Pagination = (props) => {
+    let arr = [];
+
+    for(let i = 1; i <= props.numberOfPages; i++)
+    {
+        arr.push(i);
+    }
+
     return <nav>
         <ul class="pagination mt-4">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            {
+                arr.map((ele)=>{
+                    return <li key={ele} onClick={()=>{
+                        props.changePage(ele);
+                    }} 
+                    class={`page-item ${props.currPage === ele ? "active" : ""}`}><a class="page-link" href="/#">{ele}</a></li> 
+                })
+            }
         </ul>
     </nav>
 }
