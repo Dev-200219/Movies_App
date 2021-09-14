@@ -5,7 +5,9 @@ let Navbar = () => {
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <Link class="navbar-brand" to="/">
-            MoviesRentals
+            <div style={{height:"2rem", width:"2rem"}} className="img-container">
+            <img style={{height:"100%"}} src="http://localhost:3001/icons/netflix_logo.svg" alt="" />
+            </div>
           </Link>
           <button
             class="navbar-toggler"
@@ -18,7 +20,7 @@ let Navbar = () => {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div style={{marginLeft:"100px"}} class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
                 <Link class="nav-link active" aria-current="page" to="/">
