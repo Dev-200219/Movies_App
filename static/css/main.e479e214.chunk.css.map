@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/Table.css"],"names":[],"mappings":"AAAA,eACI,WAAY,CACZ,UAAY,CACZ,oBAAqB,CACrB,iBAAkB,CAClB,iBAAkB,CAClB,WACJ","file":"main.e479e214.chunk.css","sourcesContent":[".table-dlt-btn{\r\n    border: none;\r\n    color: white;\r\n    background-color: red;\r\n    border-radius: 5px;\r\n    text-align: center;\r\n    padding: 5px 5px;\r\n}"]}
